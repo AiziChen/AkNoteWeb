@@ -1,0 +1,15 @@
+CREATE TABLE BOOK (
+ID integer primary key autoincrement,
+TITLE varchar(255) not null,
+DATETIME datetime not null
+);
+CREATE TABLE NOTE (
+ID integer primary key autoincrement,
+TITLE varchar(255) not null,
+CONTENT blob null,
+AUTHOR varchar(55),
+DATETIME datetime not null,
+BOOK_ID integer not null,
+foreign key (BOOK_ID) references BOOK(id)
+);
+
