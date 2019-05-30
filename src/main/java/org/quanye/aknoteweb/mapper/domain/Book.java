@@ -4,11 +4,20 @@ import java.util.Date;
 import java.util.List;
 
 public class Book {
-	
+
 	private Integer id;
 	private String title;
-	private Date datetime;
+	private Date createDatetime;
+	private Date modifyDatetime;
 	private List<Note> notes;
+
+	public Date getModifyDatetime() {
+		return modifyDatetime;
+	}
+
+	public void setModifyDatetime(Date modifyDatetime) {
+		this.modifyDatetime = modifyDatetime;
+	}
 
 	public List<Note> getNotes() {
 		return notes;
@@ -34,12 +43,12 @@ public class Book {
 		this.title = title;
 	}
 
-	public Date getDatetime() {
-		return datetime;
+	public Date getCreateDatetime() {
+		return createDatetime;
 	}
 
-	public void setDatetime(Date datetime) {
-		this.datetime = datetime;
+	public void setCreateDatetime(Date createDatetime) {
+		this.createDatetime = createDatetime;
 	}
 
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,7 +19,7 @@ public class NoteListController {
 	@Autowired
 	private NoteService noteService;
 
-	@RequestMapping("/newNote/{bookId}")
+	@PostMapping("/newNote/{bookId}")
 	public String newNote(@RequestParam String title,
 			@RequestParam String content, @RequestParam String author,
 			@PathVariable Integer bookId, Model model) {
@@ -27,7 +28,8 @@ public class NoteListController {
 		note.setTitle(title);
 		note.setContent(content);
 		note.setBookId(bookId);
-		note.setDatetime(new Date());
+		note.setCreateDatetime(new Date());
+		note.setModifyDatetime(note.getCreateDatetime());
 		noteService.insertNew(note);
 		model.addAttribute("note", note);
 		return "note_view";
@@ -36,7 +38,6 @@ public class NoteListController {
 	@RequestMapping("/{id}")
 	public String entryNote(@PathVariable Integer id, Model model) {
 		Note note = noteService.findById(id);
-		System.out.println(note.getTitle() + "--" + note.getDatetime());
 		model.addAttribute("note", note);
 		return "note_view";
 	}

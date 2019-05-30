@@ -8,7 +8,8 @@ public class Note {
 	private String title;
 	private String content;
 	private String author;
-	private Date datetime;
+	private Date createDatetime;
+	private Date modifyDatetime;
 	private Integer bookId;
 
 	public Integer getBookId() {
@@ -51,12 +52,20 @@ public class Note {
 		this.author = author;
 	}
 
-	public Date getDatetime() {
-		return datetime;
+	public Date getCreateDatetime() {
+		return createDatetime;
 	}
 
-	public void setDatetime(Date datetime) {
-		this.datetime = datetime;
+	public void setCreateDatetime(Date createDatetime) {
+		this.createDatetime = createDatetime;
+	}
+
+	public Date getModifyDatetime() {
+		return modifyDatetime;
+	}
+
+	public void setModifyDatetime(Date modifyDatetime) {
+		this.modifyDatetime = modifyDatetime;
 	}
 
 }

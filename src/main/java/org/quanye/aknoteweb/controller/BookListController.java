@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class BookListController {
-	
+
 	@Autowired
 	private BookService bookService;
-	
+
 	@RequestMapping("/")
 	public String index(Model model) {
 		model.addAttribute("books", bookService.findAll());
 		return "index";
 	}
-	
+
 	@RequestMapping("book/{id}")
 	public String entryNote(@PathVariable Integer id, Model model) {
 		Book book = bookService.findById(id);
@@ -33,12 +33,22 @@ public class BookListController {
 		model.addAttribute("notes", notes);
 		return "note_list";
 	}
-	
-	@RequestMapping("/newbook")
-	public void insertNewBook(@RequestParam String name) {
+
+	@RequestMapping("/book/deleteBook")
+	public String deleteBook(@RequestParam Integer id, Model model) {
+		if (id != null) {
+			bookService.deleteById(id);
+		}
+		return "redirect:/";
+	}
+
+	@RequestMapping("/book/newBook")
+	public String insertNewBook(@RequestParam String name) {
 		Book book = new Book();
-		book.setDatetime(new Date());
+		book.setCreateDatetime(new Date());
+		book.setModifyDatetime(book.getCreateDatetime());
 		book.setTitle(name);
 		bookService.insertNew(book);
+		return "redirect:/";
 	}
 }
